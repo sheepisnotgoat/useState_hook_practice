@@ -1,17 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import "./style.css";
+function Test() {
+  const [count, setCounter] = useState(0);
+  function decrementHandler() {
+    setCounter((prevCount) => prevCount - 1);
+  }
+  function incrementHandler() {
+    setCounter((prevCount) => prevCount + 1);
+  }
+  function handleReset() {
+    setCounter((prevCount) => 0);
+  }
+  return (
+    <div className="parent-container">
+      <button className="button" onClick={decrementHandler}>
+        -
+      </button>
+      <span className="counter-value">{count}</span>
+      <button className="button" onClick={incrementHandler}>
+        +
+      </button>
+      <button className="button" onClick={handleReset}>
+        RESET
+      </button>
+    </div>
+  );
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Test />);
